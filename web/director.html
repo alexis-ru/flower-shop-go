@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Василёк — Личный кабинет директора</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="vasilyok-header">
+        <div class="header-left">
+            <span class="shop-name">🌸 Василёк</span>
+        </div>
+        <nav class="header-menu">
+            <span id="userName" class="me-3"></span>
+            <a href="#" id="logoutBtn">Выйти</a>
+        </nav>
+    </header>
+
+    <main class="container-fluid py-4">
+        <ul class="nav nav-tabs mb-3" id="dirTabs">
+            <li class="nav-item"><button class="nav-link active" data-tab="sellers">Продавцы</button></li>
+            <li class="nav-item"><button class="nav-link" data-tab="flowers">Цветы</button></li>
+        </ul>
+
+        <!-- Tab: Sellers -->
+        <div id="tab-sellers">
+            <div class="d-flex justify-content-between mb-3">
+                <h5>Список сотрудников</h5>
+                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">+ Добавить продавца</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th><th>ФИО</th><th>Логин</th><th>Роль</th><th>Статус</th>
+                            <th>Дата регистрации</th><th>Дата блокировки</th><th>Дата увольнения</th><th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTable"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab: Flowers -->
+        <div id="tab-flowers" class="d-none">
+            <h5 class="mb-3">Все цветы (по всем продавцам)</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                        <tr><th>ID</th><th>Продавец</th><th>Наименование</th><th>Кол-во</th><th>Поступление</th><th>Продажа</th></tr>
+                    </thead>
+                    <tbody id="dirFlowersTable"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Новый продавец</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="addUserError" class="alert alert-danger d-none"></div>
+                    <div class="mb-3">
+                        <label class="form-label">ФИО</label>
+                        <input type="text" class="form-control" id="newFullName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Логин</label>
+                        <input type="text" class="form-control" id="newLogin" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" class="form-control" id="newPassword" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary" id="addUserBtn">Добавить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="vasilyok-footer">
+        <div class="footer-weather" id="footerWeather"><small>Загрузка погоды…</small></div>
+        <div class="footer-currencies" id="footerCurrencies"><small>Загрузка курсов валют…</small></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/director.js"></script>
+</body>
+</html>
